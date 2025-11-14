@@ -1,0 +1,83 @@
+:root{
+  --bg-dark: #0f1720;
+  --bg: #f6f7fb;
+  --panel-dark: #121214;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --text: #0b1723;
+  --text-inv: rgba(255,255,255,0.92);
+  --primary: #0066ff;
+  --accent: #7c5cff; /* violeta que querés mantener */
+  --glass: rgba(255,255,255,0.04);
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --shadow-1: 0 6px 18px rgba(12,18,28,0.06);
+  --shadow-2: 0 8px 28px rgba(12,18,28,0.08);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+/* reset y base */
+* { box-sizing: border-box; }
+html,body{height:100%}
+body{
+  margin:0;
+  min-width:320px;
+  min-height:100vh;
+  background: var(--bg);
+  color: var(--text);
+  display:flex;
+  flex-direction:column;
+}
+
+/* contenedor y header */
+.container{ width:100%; max-width:1100px; margin:28px auto; padding:0 18px; }
+.header{ height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 8px; background: linear-gradient(90deg, rgba(255,255,255,0.6), rgba(246,247,251,1)); border-bottom:1px solid rgba(12,18,28,0.04); margin-bottom:18px; }
+
+/* cards, grid y utilidades */
+.card{ background: var(--card); border-radius: var(--radius-lg); box-shadow: var(--shadow-1); padding:16px; margin-bottom:16px; overflow: visible; }
+.card-compact{ padding:12px; border-radius:10px; }
+.grid{ display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.row{ display:flex; gap:12px; align-items:center; }
+.spacer{ flex:1; }
+.center{ display:flex; align-items:center; justify-content:center; }
+
+/* botones (mantenemos violeta y estilo original) */
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; border:1px solid transparent; cursor:pointer; font-weight:600; }
+.btn-primary{ background: linear-gradient(90deg, var(--primary), var(--accent)); color:#fff; border:none; box-shadow: 0 6px 18px rgba(0,102,255,0.12); }
+.btn-ghost{ background:transparent; color:var(--text); border:1px solid rgba(12,18,28,0.06); }
+.btn-sm{ padding:6px 10px; font-size:13px; min-height:32px; }
+
+/* Event card específico (preserva tu diseño) */
+.event-card{ display:flex; gap:12px; align-items:flex-start; padding:12px; min-height:96px; }
+.event-thumb{ width:96px; height:76px; border-radius:8px; background: linear-gradient(135deg, rgba(124,92,255,0.06), rgba(0,102,255,0.04)); background-size:cover; background-position:center; flex-shrink:0; display:flex; align-items:flex-end; padding:8px; }
+.event-date-badge{ background: rgba(0,0,0,0.45); color:#fff; font-size:11px; padding:4px 6px; border-radius:6px; }
+
+/* cuerpo ocupa espacio y evita push a la columna acciones */
+.event-card > div { min-width: 0; }
+.item-title { margin:0; font-size:1.05rem; font-weight:600; line-height:1.2; overflow:hidden; max-height:2.4em; }
+.item-sub { margin:0; color:var(--muted); font-size:0.9rem; }
+
+/* tags */
+.event-card .tag { font-size:12px; padding:4px 6px; border-radius:8px; background:rgba(0,0,0,0.04); color:var(--muted); }
+
+/* columna de acciones con ancho fijo para evitar solapes */
+.event-card .actions, .event-card .ec-actions, .actions {
+  flex: 0 0 120px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:8px;
+}
+.actions .ec-price, .ec-price { font-weight:700; color:var(--primary); white-space:nowrap; }
+.actions .ec-buttons, .ec-buttons { display:flex; flex-direction:column; gap:6px; width:100%; }
+
+/* responsive: apilar en pantallas pequeñas */
+@media (max-width:480px){
+  .grid{ grid-template-columns: 1fr; }
+  .event-card{ flex-direction:column; align-items:stretch; }
+  .event-thumb{ width:100%; height:140px; }
+  .event-card .actions{ flex-direction:row; justify-content:space-between; align-items:center; margin-top:8px; }
+  .actions .ec-buttons{ flex-direction:row; gap:8px; width:auto; }
+  .btn-sm{ padding:8px 10px; }
+}
